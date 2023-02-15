@@ -1,0 +1,111 @@
+$light-green: #30C066;
+$green: #1E8352;
+$gray: #E9ECEF;
+
+// universal
+body {
+  font-family: "Montserrat", sans-serif;
+
+  a {
+    text-decoration: none;
+  }
+
+  .wrapper {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding-bottom: 100px;
+  }
+}
+
+/* header 
+------------------------*/
+header {
+  text-decoration: none;
+  height: 100%; 
+  padding-top: 10px;
+
+  .logo {
+    text-transform: uppercase;
+    font-size: 2em; 
+    font-weight: bold;
+    color: $green;
+  }
+
+  .navbar {
+    height: 100%;
+  }
+
+  #navbarNavDropdown {
+    justify-content: flex-end;
+    font-weight: bold;
+    color: white;
+    font-size: 0.7em;
+
+    .dropdown-item {
+      &:active {
+        background-color: $light-green;
+      }
+    }
+
+    .nav-link {
+      color: black;
+
+      &:hover {
+        color: $light-green;
+      }
+    }
+
+    .nav-item {
+      margin-right: 10px;
+    }
+  }
+}
+
+/* home
+------------------------*/
+.home {
+  margin-bottom: 30px;
+  h1 {
+    padding: 30px 10px 10px 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .board {
+    width:100%;
+    height:800px;
+    border: 1px solid black;
+  }
+}
+
+/* footer
+------------------------*/
+footer {
+  height: 100px;
+  color: white;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  background-color: $light-green;
+
+  a {
+    color: white;
+    display: block;
+    &:hover {
+      color: $gray;
+    }
+  }
+
+  .logo {
+    padding-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin-top: 5px;
+    font-size: 0.75rem;
+  }
+}
