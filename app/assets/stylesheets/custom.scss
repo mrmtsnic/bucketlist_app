@@ -95,7 +95,7 @@ header {
   }
 }
 
-/* users/new.html.etb
+/* users/new.html.erb
 ------------------------*/
 .users-new {
   h1 {
@@ -114,6 +114,30 @@ header {
   }
 }
 
+/* users/show.html.erb
+------------------------*/
+.users-show {
+
+  .list-group {
+    text-align: center;
+    width: 100%;
+
+    .list-group-item {
+      font-size: 0.9rem;
+      width: calc(100% / 3);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  h1 {
+    @include title;
+  }
+
+}
 
 
 /* footer
