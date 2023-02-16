@@ -1,6 +1,24 @@
 $light-green: #30C066;
 $green: #1E8352;
 $gray: #E9ECEF;
+@mixin title {
+  padding: 30px 10px 10px 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@mixin form {
+  .form-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+}
+
+.debug_dump {
+  display: inline-block;
+}
 
 // universal
 body {
@@ -62,15 +80,12 @@ header {
   }
 }
 
-/* home
+/* home.html.erb
 ------------------------*/
 .home {
   margin-bottom: 30px;
   h1 {
-    padding: 30px 10px 10px 0;
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: bold;
+    @include title;
   }
 
   .board {
@@ -79,6 +94,27 @@ header {
     border: 1px solid black;
   }
 }
+
+/* users/new.html.etb
+------------------------*/
+.users-new {
+  h1 {
+    @include title;
+    text-align: center;
+  }
+  
+  form {
+    @include form;
+  }
+
+  .btn {
+    background-color: $light-green;
+    color: white;
+    margin-top: 10px;
+  }
+}
+
+
 
 /* footer
 ------------------------*/

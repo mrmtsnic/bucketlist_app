@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <% if true %> <!-- ログインしてるとき -->
+          <% if false %> <!-- ログインしてるとき TODO ログインしてるかのメソッド実装 -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown">
                 Account
@@ -23,7 +23,7 @@
             </li>
           <% else %><!-- ログインしてない -->
             <li class="nav-item">
-              <%= link_to "Sign up", "#", {class: "nav-link", role: "button"} %>
+              <%= link_to "Sign up", signup_path, {class: "nav-link", role: "button"} %>
             </li>
             <li class="nav-item">
               <%= link_to "Sign in", "#", {class: "nav-link", role: "button"} %>
