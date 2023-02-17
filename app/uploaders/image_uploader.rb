@@ -16,7 +16,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png)
   end
 
-  # 画像をリサイズ
+  # 画像をリサイズ TODO このリサイズはちゃんと機能してるのか確認
   version :thumb do
     process resize_to_fit: [150, 150]
   end

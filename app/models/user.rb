@@ -10,6 +10,13 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, ImageUploader
   
+  # 渡された文字列をハッシュ値にして返す
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
   private
 
     def to_downcase

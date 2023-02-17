@@ -14,6 +14,12 @@ $gray: #E9ECEF;
     font-weight: bold;
     margin-top: 10px;
   }
+
+  .btn {
+    background-color: $light-green;
+    color: white;
+    margin-top: 10px;
+  }
 }
 
 @mixin avatar {
@@ -22,6 +28,7 @@ $gray: #E9ECEF;
 
 .debug_dump {
   display: inline-block;
+  width: 100%;
 }
 
 // universal
@@ -111,11 +118,6 @@ header {
     @include form;
   }
 
-  .btn {
-    background-color: $light-green;
-    color: white;
-    margin-top: 10px;
-  }
 }
 
 /* users/show.html.erb
@@ -128,7 +130,7 @@ header {
 
     .list-group-item {
       color: white;
-      background-color: rgba(48,192,102, 0.9); 
+      background-color: $light-green; 
       font-size: 0.9rem;
       border: none;
       width: calc(100% / 3);
@@ -156,6 +158,25 @@ header {
     @include title;
   }
 
+}
+
+/* sessions/new.html.erb
+------------------------*/
+.sessions-new  {
+
+  form {
+    @include form;
+
+    p {
+      margin-top: 5px;
+      font-size: 0.9rem;
+    }
+  }
+
+  h1 {
+    @include title;
+    text-align: center;
+  }
 }
 
 

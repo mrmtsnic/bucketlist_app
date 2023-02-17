@@ -23,8 +23,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password: "password",
                                          password_confirmation: "password" } }
     end
-    # この後に別のリクエストをするときはfollow_redirect!をここに入れること
+    follow_redirect!
     assert_template 'users/show'
     assert_not flash.empty?
+    assert logged_in?
   end
 end

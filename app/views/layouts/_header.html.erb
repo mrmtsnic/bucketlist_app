@@ -2,36 +2,49 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <%= link_to "Bucket List App", root_path, class: "logo" %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown" 
+              aria-controls="navbarNavDropdown" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <% if false %> <!-- ログインしてるとき TODO ログインしてるかのメソッド実装 -->
+          <% if logged_in? %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="#"
+                 id="navbarDropdownMenuLink" role="button" 
+                 data-bs-toggle="dropdown">
                 Account
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><%= link_to "My Page", "#", class: "dropdown-item" %></li>
+              <ul class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                  <%= link_to "My Page", current_user, 
+                      class: "dropdown-item" %>
+                </li>
                 <li><%= link_to "Settings", "#", class: "dropdown-item" %></li>
               </ul>
-            </li>
-            <!-- .nav-item dropdown -->
+            </li><!-- .nav-item dropdown -->
             <li class="nav-item">
-              <li><%= link_to "Log out", "#", {class: "nav-link", role: "button"} %></li>
+              <li><%= link_to "Log out", logout_path,
+                              {class: "nav-link", role: "button",
+                               data: { "turbo-method": :delete }  } %>
+              </li>
             </li>
-          <% else %><!-- ログインしてない -->
+          <% else %>
             <li class="nav-item">
-              <%= link_to "Sign up", signup_path, {class: "nav-link", role: "button"} %>
+              <%= link_to "Sign up", signup_path,
+                  {class: "nav-link", role: "button"} %>
             </li>
             <li class="nav-item">
-              <%= link_to "Sign in", "#", {class: "nav-link", role: "button"} %>
+              <%= link_to "Log in", login_path,
+                  {class: "nav-link", role: "button"} %>
             </li>
           <% end %>
         </ul>
-      </div>
-      <!-- #navbarNavDropdown -->
+      </div><!-- #navbarNavDropdown -->
     </div>
   </nav>
 </header>
