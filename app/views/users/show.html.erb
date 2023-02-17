@@ -4,15 +4,12 @@
     <div class="col-md-8">
       <ul class="list-group list-group-horizontal">
         <li class="list-group-item user-info">
-          <p>img</p> <!-- 画像を取得する画像がなかったらデフォルトを表示 -->
+          <%= image_tag @user.avatar.thumb.url %> <!-- 画像を取得 画像がなかったらデフォルトが表示される -->
           <p><%= @user.name %></p>
         </li>
         <li class="list-group-item">やりたいこと</li>
         <li class="list-group-item">達成したこと</li>
       </ul>
     </div>
-  </div>
-  <div class="info">
-    <%= @user.name %>
   </div>
 </div>

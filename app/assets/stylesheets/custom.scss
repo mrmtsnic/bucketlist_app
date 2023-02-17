@@ -1,5 +1,5 @@
-$light-green: #30C066;
-$green: #1E8352;
+$light-green: #30c066;
+$green: #1e8352;
 $gray: #E9ECEF;
 @mixin title {
   padding: 30px 10px 10px 0;
@@ -14,6 +14,10 @@ $gray: #E9ECEF;
     font-weight: bold;
     margin-top: 10px;
   }
+}
+
+@mixin avatar {
+  border-radius: 50%;
 }
 
 .debug_dump {
@@ -123,13 +127,28 @@ header {
     width: 100%;
 
     .list-group-item {
+      color: white;
+      background-color: rgba(48,192,102, 0.9); 
       font-size: 0.9rem;
+      border: none;
       width: calc(100% / 3);
     }
 
     .user-info {
       display: flex;
       align-items: center;
+      justify-content: space-around;
+
+      img {
+        @include avatar;
+        width: 40%;
+      }
+
+      p {
+        font-size: 1.5rem;
+        width: 60%;
+        margin-bottom: 0;
+      }
     }
   }
 
