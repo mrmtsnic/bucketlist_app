@@ -10,8 +10,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # ログイン失敗→flash表示→homeに行く→flashが消えることを確認する
     get login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { email: @user.email,
-                                          password: "invalid" } }
+    log_in_as(@user, password: "invalid")
+    # post login_path, params: { session: { email: @user.email,
+    #                                       password: "invalid" } }
     assert_template 'sessions/new'
     assert_response :unprocessable_entity
     assert_not flash.empty?
@@ -22,8 +23,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with valid information and logout" do
     get login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { email: @user.email,
-                                          password: 'password' } }
+    log_in_as @user
     assert_redirected_to @user
     follow_redirect!
     assert_select "a[href=?]", login_path, count: 0
@@ -33,11 +33,27 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
     # logout
     delete logout_path
-    assert_not logged_in?
-    assert_redirected_to root_path
+    assert_redirected_to root_url
     assert_response :see_other
+    assert_not logged_in?
+    delete logout_path # 2番目のウィンドウでログアウトをクリックする
     follow_redirect!
     assert_not flash.empty?
+    assert_select "a[href=?]", login_path
+    assert_select "a[href=?]", logout_path, count: 0
+  end
+
+  test "login with remembering" do
+    log_in_as @user, remember_me: '1'
+    assert_not cookies[:remember_token].blank?
+  end
+
+  test "login without remembering" do
+    log_in_as @user, remember_me: '1'
+    assert_not cookies[:remember_token].blank?
+
+    log_in_as @user, remember_me: '0'
+    assert cookies[:remember_token].blank?
   end
 
 end

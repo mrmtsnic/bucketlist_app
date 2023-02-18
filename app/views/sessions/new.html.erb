@@ -10,6 +10,11 @@
         <%= f.label :password, "パスワード", class: "form-label" %>
         <%= f.password_field :password, class: "form-control" %>
 
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span>ログインしたままにする</span>
+        <% end %>
+
         <%= f.submit "ログイン", class: "btn form-control" %>
 
         <p>新規登録はお済みですか？ <%= link_to "Sign up", signup_path %></p>
