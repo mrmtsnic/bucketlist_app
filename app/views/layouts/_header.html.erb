@@ -12,6 +12,10 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to "Home", root_path, {class: "nav-link",
+                                              role: 'button'}%>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#"
                  id="navbarDropdownMenuLink" role="button" 
@@ -24,14 +28,15 @@
                   <%= link_to "My Page", current_user, 
                       class: "dropdown-item" %>
                 </li>
-                <li><%= link_to "Settings", "#", class: "dropdown-item" %></li>
+                <li>
+                  <%= link_to "Settings", edit_user_path(current_user),
+                      class: "dropdown-item" %>
+                </li>
               </ul>
             </li><!-- .nav-item dropdown -->
-            <li class="nav-item">
-              <li><%= link_to "Log out", logout_path,
-                              {class: "nav-link", role: "button",
-                               data: { "turbo-method": :delete }  } %>
-              </li>
+            <li><%= link_to "Log out", logout_path,
+                            {class: "nav-link", role: "button",
+                              data: { "turbo-method": :delete }  } %>
             </li>
           <% else %>
             <li class="nav-item">
