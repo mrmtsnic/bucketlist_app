@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   before_save :to_downcase
+  has_one_attached :avatar
   validates :name, presence: true, length: { maximum: 10 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, 
@@ -8,7 +9,11 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  
+  validates :avatar, content_type: { in: %w[image/jpeg image/gif image/png ],
+                                     message: "有効なフォーマットではありません" },
+                     size: { less_than: 5.megabytes,
+                             message: "5MBを超える画像はアップロードできません" }
+
   # 渡された文字列をハッシュ値にして返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

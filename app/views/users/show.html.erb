@@ -4,7 +4,11 @@
     <div class="col-md-8">
       <ul class="list-group list-group-horizontal">
         <li class="list-group-item user-info">
-          <%= image_tag "default.png" %>
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar %>
+          <% else %>
+            <%= image_tag "default.png" %>
+          <% end %>
           <p><%= @user.name %></p>
         </li>
         <li class="list-group-item">やりたいこと</li>

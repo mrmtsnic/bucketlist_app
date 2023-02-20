@@ -144,6 +144,8 @@ header {
       img {
         @include avatar;
         width: 40%;
+        width: 100px;
+        height: 100px;
       }
 
       p {
@@ -170,6 +172,18 @@ header {
 
   form {
     @include form;
+  }
+
+  .avatar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 150%;
+    }
   }
 }
 
