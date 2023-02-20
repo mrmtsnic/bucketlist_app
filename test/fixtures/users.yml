@@ -2,6 +2,7 @@ test:
   name: "test"
   email: "test@test.com"
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 <% (2..35).each do |n| %>
 test<%= n %>:

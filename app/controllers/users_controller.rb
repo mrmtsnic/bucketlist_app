@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
-  before_action :redirect_home_unless_logged_in, only: [:edit, :update]
-  before_action :redirect_home_unless_not_current_user,
+  before_action :redirect_login_unless_logged_in,
+                only: [:index, :edit, :update, :destroy]
+  before_action :redirect_home_unless_current_user,
                 only: [:edit, :update]
+  before_action :redirect_home_unless_admin_user, only: [:destroy]
   def new
     @user = User.new
   end
@@ -32,13 +34,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.avatar.attach(params[:user][:avatar]) if @user.avatar.blank?
+    @user.avatar.attach(params[:user][:avatar]) #if @user.avatar.blank?
     if @user.update(user_params)
       flash[:success] = "プロフィールを更新しました"
       redirect_to @user
     else
       render 'edit', status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "ユーザーを削除しました"
+    redirect_to users_url, status: :see_other
   end
 
   private
@@ -48,18 +56,22 @@ class UsersController < ApplicationController
                                    :password_confirmation, :avatar)
     end
 
-    def redirect_home_unless_logged_in
+    def redirect_login_unless_logged_in
       unless logged_in?
         flash[:danger] = "ログインしてください"
         redirect_to login_url, status: :see_other
       end
     end
 
-    def redirect_home_unless_not_current_user
+    def redirect_home_unless_current_user
       @user = User.find(params[:id])
       unless current_user?(@user)
         flash[:danger] = "権限がありません"
         redirect_to root_url, status: :see_other
       end
+    end
+    
+    def redirect_home_unless_admin_user
+      redirect_to root_url, status: :see_other unless current_user.admin?
     end
 end
