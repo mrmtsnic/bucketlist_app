@@ -1,17 +1,13 @@
 <div class="users-edit">
   <h1>Edit profile</h1>
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 mb-5">
       <%= form_with model: @user do |f| %>
         <%= render "shared/error_messages", object: f.object %>
 
         <%= f.label :avatar, "アバター", class: "form-label" %>
         <div class="avatar-profile">
-          <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar, id: 'avatar' %>
-          <% else %>
-            <%= image_tag "default.png", id: 'avatar' %>
-          <% end %>
+          <%= image_tag @user.avatar_url, id: "avatar" %>
           <!-- 暫定 -->
           <%= f.file_field :avatar, onchange: "avatarImage(this)",
                                     accept: "image/jpeg, image/gif, image/png",

@@ -28,6 +28,10 @@ module SessionsHelper
     end
   end
 
+  def current_user?(user)
+    user && user == current_user
+  end
+
   # ログインしてるか確認する
   def logged_in?
     if current_user

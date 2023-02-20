@@ -50,6 +50,15 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  # ユーザーのアバターのurlを返す
+  def avatar_url
+    if self.avatar.attached?
+      self.avatar
+    else
+      "default.png"
+    end
+  end
+
   private
 
     def to_downcase

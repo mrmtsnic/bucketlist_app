@@ -13,6 +13,7 @@ $gray: #E9ECEF;
     font-size: 0.8rem;
     font-weight: bold;
     margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .btn {
@@ -22,7 +23,9 @@ $gray: #E9ECEF;
   }
 }
 
-@mixin avatar {
+@mixin image($size) {
+  height: $size;
+  width: $size;
   border-radius: 50%;
 }
 
@@ -125,32 +128,34 @@ header {
 .users-show {
 
   .list-group {
+    flex-direction: row;
     text-align: center;
     width: 100%;
+    border-radius: 0;
 
     .list-group-item {
+      padding: 10px;
       color: white;
       background-color: $light-green; 
       font-size: 0.9rem;
       border: none;
-      width: calc(100% / 3);
-    }
+      width: 100%;
 
+      .count {
+        font-size: 2rem;
+      }
+    }
     .user-info {
       display: flex;
       align-items: center;
       justify-content: space-around;
 
       img {
-        @include avatar;
-        width: 40%;
-        width: 100px;
-        height: 100px;
+        @include image(100px);
       }
 
       p {
         font-size: 1.5rem;
-        width: 60%;
         margin-bottom: 0;
       }
     }
@@ -160,6 +165,50 @@ header {
     @include title;
   }
 
+}
+
+@media screen and (max-width: 960px) {
+
+  .users-show {
+    .list-group {
+      .list-group-item {
+        font-size: 0.8rem;
+      }
+  
+      .user-info {
+  
+        img {
+          @include image(90px);
+        }
+  
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .users-show {
+    .list-group{
+      
+      flex-direction: column;
+      .list-group-item{
+        padding: 10px;
+
+        p {
+          margin-bottom: 1px;
+        }
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+    }
+  }
 }
 
 /* users/edit.html.erb
@@ -180,9 +229,47 @@ header {
     align-items: center;
 
     img {
-      width: 150px;
-      height: 150px;
-      border-radius: 150%;
+      @include image(150px);
+    }
+  }
+}
+
+/* users/index.html.erb
+------------------------*/
+.users-index {
+  h1 {
+    @include title;
+  }
+
+  .page-link {
+    color: $green;
+  }
+  .page-item.active {
+    .page-link {
+      z-index: 3;
+      color: #fff;
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+    
+  img {
+    @include image(50px);
+    margin-right: 15px;
+  }
+
+  .user {
+    list-style: none;
+    border-bottom: 1px solid $gray;
+    padding: 10px;
+
+    a {
+      color: black;
+    }
+
+    .name {
+      font-size: 1rem;
+      font-weight: normal;
     }
   }
 }

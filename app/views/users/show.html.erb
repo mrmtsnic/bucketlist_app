@@ -1,19 +1,19 @@
 <div class="users-show">
   <h1>マイページ</h1>
-  <div class="row">
-    <div class="col-md-8">
-      <ul class="list-group list-group-horizontal">
-        <li class="list-group-item user-info">
-          <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar %>
-          <% else %>
-            <%= image_tag "default.png" %>
-          <% end %>
-          <p><%= @user.name %></p>
-        </li>
-        <li class="list-group-item">やりたいこと</li>
-        <li class="list-group-item">達成したこと</li>
-      </ul>
-    </div>
-  </div>
+  
+  <ul class="list-group">
+    <li class="list-group-item user-info">
+      <%= image_tag @user.avatar_url %>
+      <p><%= @user.name %></p>
+    </li>
+    <li class="list-group-item">
+      <p>やりたいこと</p>
+      <div class="count">50</div>
+    </li>
+    <li class="list-group-item">
+      <p>達成したこと</p>
+      <div class="count">50</div>
+    </li>
+  </ul>
+
 </div>

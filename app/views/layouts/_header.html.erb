@@ -14,7 +14,11 @@
           <% if logged_in? %>
             <li class="nav-item">
               <%= link_to "Home", root_path, {class: "nav-link",
-                                              role: 'button'}%>
+                                              role: "button"} %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Users", users_path, {class: "nav-link",
+                                                role: 'button'} %>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#"
