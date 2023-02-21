@@ -3,10 +3,14 @@ test:
   email: "test@test.com"
   password_digest: <%= User.digest('password') %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 <% (2..35).each do |n| %>
 test<%= n %>:
   name: <%= "test#{n}" %>
   email: <%= "test#{n}@test.com" %>
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

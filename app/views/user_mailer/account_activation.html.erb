@@ -1,0 +1,10 @@
+<h1>Bucketlist App</h1>
+
+<p><%= @user.name %>様</p>
+
+<p>
+  新規登録していただき、ありがとうございます。アカウントを承認するために以下のリンクをクリックしてください。
+</p>
+
+<%= link_to "アカウント承認", edit_account_activation_url(@user.activation_token,
+                                                       email: @user.email) %>

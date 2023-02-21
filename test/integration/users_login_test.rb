@@ -25,6 +25,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     log_in_as @user
     assert_redirected_to @user
+    assert_not flash.empty?
     follow_redirect!
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", signup_path, count: 0
