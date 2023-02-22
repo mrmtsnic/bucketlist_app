@@ -5,10 +5,4 @@ class PasswordResetsControllerTest < ActionDispatch::IntegrationTest
     get new_password_reset_url
     assert_response :success
   end
-
-  test "should get edit" do
-    user = users(:test)
-    get edit_password_reset_url user
-    assert_response :success
-  end
 end

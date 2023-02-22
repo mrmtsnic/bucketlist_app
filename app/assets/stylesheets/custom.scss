@@ -324,6 +324,25 @@ header {
   }
 }
 
+/* password_resets/edit.html.erb
+------------------------*/
+.password-resets-edit {
+
+  form {
+    @include form;
+  }
+
+  h1 {
+    @include title;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+}
+
 
 /* footer
 ------------------------*/
