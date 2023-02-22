@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:test)
+    @user2 = users(:test2)
   end
 
   test "email validation should reject invalid addresses" do
@@ -35,6 +36,13 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+  test "microposts should be deleted when user was deleted" do
+    @user2.list_items.create!(content: "test")
+    assert_difference 'ListItem.count', -1 do
+      @user2.destroy
+    end
   end
 
 end

@@ -1,0 +1,19 @@
+lose_weight:
+  content: "100kg減量する"
+  created_at: <%= 10.minutes.ago %>
+  user: test
+
+gain_weight:
+  content: "100kg増量する"
+  created_at: <%= 50.minutes.ago %>
+  user: test
+
+eat_sushi:
+  content: "寿司を食べる"
+  created_at: <%= 3.hours.ago %>
+  user: test
+
+most_recent:
+  content: "ハワイに住む"
+  created_at: <%= Time.zone.now %>
+  user: test
