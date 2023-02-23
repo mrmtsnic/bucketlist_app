@@ -17,3 +17,10 @@ User.create!(name: "admin",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+#一部のユーザーにやりたいことリストを作成する
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(word_count: 3)
+  users.each { |user| user.list_items.create!(content: content) }
+end

@@ -16,5 +16,8 @@ module App
                                                  '*.yml').to_s]
 
     config.active_storage.variant_processor = :mini_magick
+
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   end
 end

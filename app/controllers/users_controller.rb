@@ -9,11 +9,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    @list_items = @user.list_items.page(params[:page])
   end
 
   def create
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.avatar.attach(params[:user][:avatar]) #if @user.avatar.blank?
+    @user.avatar.attach(params[:user][:avatar])
     if @user.update(user_params)
       flash[:success] = "プロフィールを更新しました"
       redirect_to @user

@@ -8,7 +8,16 @@ $gray: #E9ECEF;
   font-weight: bold;
 }
 
+@mixin btn {
+  .btn {
+    background-color: $light-green;
+    color: white;
+    margin-top: 10px;
+  }
+}
+
 @mixin form {
+
   .form-label {
     font-size: 0.8rem;
     font-weight: bold;
@@ -21,12 +30,28 @@ $gray: #E9ECEF;
     color: white;
     margin-top: 10px;
   }
+
 }
 
 @mixin image($size) {
   height: $size;
   width: $size;
   border-radius: 50%;
+}
+
+@mixin pagination {
+  .page-link {
+    color: $green;
+  }
+
+  .page-item.active {
+    .page-link {
+      z-index: 3;
+      color: #fff;
+      background-color: $green;
+      border-color: $green;
+    }
+  }
 }
 
 .debug_dump {
@@ -37,7 +62,14 @@ $gray: #E9ECEF;
 // universal
 body {
   font-family: "Montserrat", sans-serif;
+  ol {
+    list-style-type: none;
+    padding-left: 0;
+  }
 
+  ul {
+    list-style-type: none;
+  }
   a {
     text-decoration: none;
   }
@@ -59,7 +91,7 @@ header {
 
   .logo {
     text-transform: uppercase;
-    font-size: 2em; 
+    font-size: 1.3rem; 
     font-weight: bold;
     color: $green;
   }
@@ -126,17 +158,24 @@ header {
 /* users/show.html.erb
 ------------------------*/
 .users-show {
+  @include pagination;
+  
+  h1 {
+    @include title;
+  }
 
   .list-group {
     flex-direction: row;
     text-align: center;
     width: 100%;
     border-radius: 0;
+    background-color: $light-green;
+    border-radius: 0.25rem;
 
     .list-group-item {
       padding: 10px;
       color: white;
-      background-color: $light-green; 
+      background-color: transparent;
       font-size: 0.9rem;
       border: none;
       width: 100%;
@@ -161,8 +200,11 @@ header {
     }
   }
 
-  h1 {
-    @include title;
+  .nav-item {
+    
+    .active { 
+      background-color: $light-green;
+    }
   }
 
 }
@@ -237,22 +279,12 @@ header {
 /* users/index.html.erb
 ------------------------*/
 .users-index {
+  @include pagination;
+  
   h1 {
     @include title;
   }
 
-  .page-link {
-    color: $green;
-  }
-  .page-item.active {
-    .page-link {
-      z-index: 3;
-      color: #fff;
-      background-color: $green;
-      border-color: $green;
-    }
-  }
-    
   img {
     @include image(50px);
     margin-right: 15px;
@@ -372,4 +404,31 @@ footer {
     margin-top: 5px;
     font-size: 0.75rem;
   }
+}
+
+/* _list_item_show
+------------------------*/
+.card {
+  position: relative;
+  .card-body {
+
+    button {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+
+    .timestamp {
+      font-size: 0.7rem;
+    }
+
+  }
+
+  .card-footer {
+    
+    .edit {
+      margin-right: 5px;
+    }
+  }
+
 }

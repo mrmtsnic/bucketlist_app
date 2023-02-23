@@ -1,0 +1,21 @@
+<li id="list-item-<%= list_item.id %>" class="col">
+  <div class="card">
+    <div class="card-body">
+      <p><button>達成!</button></p>
+      <p class="card-text"><%= list_item.content %></p>
+      <p class="timestamp text-end"><%= list_item.process_created_at %></p>
+    </div>
+    <div class="card-footer bg-transparent d-flex justify-content-between">
+      <div class="like">
+        <a href="#" class="like-btn">い</a>
+        <span>いいね数</span>
+      </div>
+
+      <ul class="d-flex">
+        <li><a href="#" class="edit">編</a></li>
+        <li><a href="#" class="delete">削</a></li>
+      </ul>
+
+    </div>
+  </div>
+</li>

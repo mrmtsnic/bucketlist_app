@@ -5,8 +5,8 @@ ruby "3.1.3"
 gem 'rails-i18n'
 gem 'mini_magick'
 gem 'active_storage_validations'
-gem 'will_paginate'
-gem "will_paginate-bootstrap-style"
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
 gem 'faker'
 gem 'image_processing'
 
