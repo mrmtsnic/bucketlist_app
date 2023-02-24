@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @list_item =  @user.list_items.build
     @list_items = @user.list_items.page(params[:page])
   end
 
@@ -54,13 +55,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :avatar)
-    end
-
-    def redirect_login_unless_logged_in
-      unless logged_in?
-        flash[:danger] = "ログインしてください"
-        redirect_to login_url, status: :see_other
-      end
     end
 
     def redirect_home_unless_current_user

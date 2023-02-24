@@ -16,6 +16,8 @@
     </li>
   </ul>
 
+
+
   <!-- タブ ----------------------------------------->
   <!-- ピル部分 -->
   <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
@@ -62,13 +64,18 @@
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
       <div class="bucket-list">
+
+        <!-- 投稿 -->
+      <%= render "list_items/list_items_form" %>
+
+      <!-- やりたいこと -->
       <% if @user.list_items.any? %>
         
-          <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
-                    row-cols-lg-4 g-2 mb-4">
-            <%= render partial: "list_items/list_item_show",
-                       collection: @list_items, as: :list_item %>
-          </ol>
+        <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                  row-cols-lg-4 g-2 mb-4">
+          <%= render partial: "list_items/list_item_show",
+                      collection: @list_items, as: :list_item %>
+        </ol>
 
         <%= paginate @list_items, theme: 'bootstrap-5',
                                   pagination_class: "justify-content-center" %>
@@ -88,14 +95,3 @@
   <!-- パネル部分 -->
   <!-- タブ ---------------------------------->
 </div>
-
-<script>
-(function() {
-  window.addEventListener("turbo:load", function() {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-  });
-})();
-</script>

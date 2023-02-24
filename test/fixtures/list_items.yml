@@ -1,3 +1,8 @@
+test:
+  content: "testする"
+  created_at: <%= 2.hours.ago %>
+  user: test
+
 lose_weight:
   content: "100kg減量する"
   created_at: <%= 10.minutes.ago %>
@@ -17,3 +22,10 @@ most_recent:
   content: "ハワイに住む"
   created_at: <%= Time.zone.now %>
   user: test
+
+<% 30.times do |n| %>
+list_item_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 10.years.ago %>
+  user: test
+<% end %>

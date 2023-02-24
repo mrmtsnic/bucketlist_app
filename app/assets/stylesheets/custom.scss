@@ -417,6 +417,15 @@ footer {
   }
 }
 
+/* shared/_error_messages
+------------------------*/
+.alert {
+  
+  ul {
+    margin-bottom: 0;
+  }
+}
+
 /* _list_item_show
 ------------------------*/
 .card {
@@ -452,4 +461,13 @@ footer {
     }
   }
 
+}
+
+/* _list_items_form.html.erb
+------------------------*/
+.add-btn {
+  .btn {
+    background-color: $green;
+    color: white;
+  }
 }

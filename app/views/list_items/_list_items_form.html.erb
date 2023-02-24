@@ -1,0 +1,14 @@
+<%= form_with(model: @list_item) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="row mb-3">
+    <div class="content col-md-10 mb-3 mb-md-0">
+      <%= f.text_field :content,
+                      { placeholder: "やりたいことを追加しましょう！",
+                        class: 'form-control content' } %>
+    </div>
+    <div class="add-btn col-md-2">
+      <%= f.submit '追加する', class: "btn form-control" %>
+    </div>
+  </div>
+<% end %>
