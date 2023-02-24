@@ -18,7 +18,7 @@
 
   <!-- タブ ----------------------------------------->
   <!-- ピル部分 -->
-  <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+  <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <button type="button" 
               class="nav-link active" 
@@ -63,11 +63,9 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
       <div class="bucket-list">
       <% if @user.list_items.any? %>
-        <%= paginate @list_items, theme: 'bootstrap-5',
-                                  pagination_class: "justify-content-center" %>
         
           <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
-                    row-cols-lg-4 g-2">
+                    row-cols-lg-4 g-2 mb-4">
             <%= render partial: "list_items/list_item_show",
                        collection: @list_items, as: :list_item %>
           </ol>
@@ -90,3 +88,4 @@
   <!-- パネル部分 -->
   <!-- タブ ---------------------------------->
 </div>
+

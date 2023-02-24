@@ -1,6 +1,6 @@
-$light-green: #30c066;
 $green: #1e8352;
 $gray: #E9ECEF;
+$black-green: #003333;
 @mixin title {
   padding: 30px 10px 10px 0;
   font-size: 1rem;
@@ -10,7 +10,7 @@ $gray: #E9ECEF;
 
 @mixin btn {
   .btn {
-    background-color: $light-green;
+    background-color: $green;
     color: white;
     margin-top: 10px;
   }
@@ -26,7 +26,7 @@ $gray: #E9ECEF;
   }
 
   .btn {
-    background-color: $light-green;
+    background-color: $green;
     color: white;
     margin-top: 10px;
   }
@@ -108,7 +108,7 @@ header {
 
     .dropdown-item {
       &:active {
-        background-color: $light-green;
+        background-color: $green;
       }
     }
 
@@ -116,7 +116,7 @@ header {
       color: black;
 
       &:hover {
-        color: $light-green;
+        color: $green;
       }
     }
 
@@ -169,7 +169,7 @@ header {
     text-align: center;
     width: 100%;
     border-radius: 0;
-    background-color: $light-green;
+    background-color: $green;
     border-radius: 0.25rem;
 
     .list-group-item {
@@ -201,10 +201,21 @@ header {
   }
 
   .nav-item {
+    font-size: 1rem;
+    font-weight: bold;
+    width: 30%;
+    
+    .nav-link {
+      border: 3px solid $green;
+      width: 100%;
+      color: $green;
+    }
     
     .active { 
-      background-color: $light-green;
+      background-color: $green;
+      color: white;
     }
+
   }
 
 }
@@ -385,7 +396,7 @@ footer {
   text-align: center;
   position: absolute;
   bottom: 0;
-  background-color: $light-green;
+  background-color: $green;
 
   a {
     color: white;
@@ -410,12 +421,23 @@ footer {
 ------------------------*/
 .card {
   position: relative;
+
+  a {
+    color: $black-green;
+  }
+
   .card-body {
 
-    button {
+    .accomplish {
+      color: $gray;
       position: absolute;
-      top: -5px;
-      right: -5px;
+      top: 5px;
+      left: 5px;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      margin-top: 35px;
     }
 
     .timestamp {
@@ -425,8 +447,7 @@ footer {
   }
 
   .card-footer {
-    
-    .edit {
+    .edit{
       margin-right: 5px;
     }
   }
