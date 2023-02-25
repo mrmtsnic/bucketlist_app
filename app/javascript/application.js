@@ -5,4 +5,4 @@ import "popper"
 import "bootstrap"
 import '@fortawesome/fontawesome-free'
 
-import './custom/tooltip'
+// import './custom/tooltip'
