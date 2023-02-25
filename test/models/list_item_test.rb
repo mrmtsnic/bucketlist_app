@@ -17,8 +17,8 @@ class ListItemTest < ActiveSupport::TestCase
     assert_not @list_item.valid?
   end
 
-  test "content should be at most 30 characters" do
-    @list_item.content = "a" * 31
+  test "content should be at most 50 characters" do
+    @list_item.content = "a" * 51
     assert_not @list_item.valid?
   end
 

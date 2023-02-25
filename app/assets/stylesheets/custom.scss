@@ -1,4 +1,5 @@
 $green: #1e8352;
+$green-lighter: #33CC33;
 $gray: #E9ECEF;
 $black-green: #003333;
 @mixin title {
@@ -52,6 +53,13 @@ $black-green: #003333;
       border-color: $green;
     }
   }
+}
+
+@mixin accomplish-icon($color){
+  color: $color;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 
 .debug_dump {
@@ -320,7 +328,6 @@ header {
 /* sessions/new.html.erb
 ------------------------*/
 .sessions-new  {
-
   form {
     @include form;
 
@@ -351,7 +358,6 @@ header {
 /* password_resets/new.html.erb
 ------------------------*/
 .password-resets-new {
-  
   form {
     @include form;
 
@@ -420,13 +426,25 @@ footer {
 /* shared/_error_messages
 ------------------------*/
 .alert {
-  
   ul {
     margin-bottom: 0;
   }
 }
 
-/* _list_item_show
+/* list_items/edit
+------------------------*/
+.list-items-edit {
+  @include form;
+
+  h1 {
+    @include title;
+    text-align: center;
+  }
+
+}
+
+/* _list_item_not_accomplished
+   _list_item_accomplished
 ------------------------*/
 .card {
   position: relative;
@@ -438,10 +456,11 @@ footer {
   .card-body {
 
     .accomplish {
-      color: $gray;
-      position: absolute;
-      top: 5px;
-      left: 5px;
+      @include accomplish-icon($gray);
+    }
+
+    .not-accomplish {
+      @include accomplish-icon($green-lighter);
     }
 
     .card-text {

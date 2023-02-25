@@ -1,0 +1,46 @@
+<li id="list-item-<%= list_item.id %>" class="col">
+  <div class="card">
+    <div class="card-body">
+      <% if current_user?(list_item.user) %>
+
+        <%= link_to accomplish_list_item_path(list_item),
+            data: {"turbo-method": :post} do %>
+          <div class ="accomplish" data-bs-toggle="tooltip"
+            data-bs-placement="top" title="未達成" style="display: inline-block;">
+            <i class="fa-solid fa-circle-check fa-2x"></i>
+          </div>
+        <% end %><!-- link_to -->
+      
+      <% end %><!-- if current_user? -->
+      <p class="card-text"><%= list_item.content %></p>
+      <p class="timestamp text-end"><%= list_item.process_created_at %></p>
+    </div>
+
+    <div class="card-footer bg-transparent d-flex justify-content-between">
+      <div class="like">
+        <a href="#" class="like-btn">
+          <i class="fa-regular fa-thumbs-up fa-lg"></i>
+        </a>
+        <span>いいね数</span>
+      </div>
+
+      <% if current_user?(list_item.user) %>
+      <ul class="d-flex">
+        <li>
+          <%= link_to edit_list_item_path(list_item), class: "edit" do%>
+            <i class="fa-regular fa-pen-to-square fa-lg"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to list_item,
+              {data: { "turbo-method": :delete,
+                                        turbo_confirm: "本当に削除しますか？" },
+                class: "delete"} do%>
+            <i class="fa-regular fa-trash-can fa-lg"></i>
+          <% end %>
+        </li>
+      </ul>
+      <% end %><!-- if -->
+    </div><!--- .card-footer -->
+  </div><!-- .card -->
+</li>

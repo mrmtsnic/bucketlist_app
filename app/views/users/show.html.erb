@@ -8,19 +8,22 @@
     </li>
     <li class="list-group-item">
       <p>やりたいこと</p>
-      <div class="count"><%= @user.list_items.count %></div>
+      <div class="count">
+        <%= @user.list_items.where(accomplished: false).count %>
+      </div>
     </li>
     <li class="list-group-item">
       <p>達成したこと</p>
-      <div class="count">50</div>
+      <div class="count">
+        <%= @user.list_items.where(accomplished: true).count %>
+      </div>
     </li>
   </ul>
 
-
-
-  <!-- タブ ----------------------------------------->
-  <!-- ピル部分 -->
-  <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+  <!-- ↓タブ ----------------------------------------->
+  <!-- ↓ピル部分 -->
+  <ul class="nav nav-pills justify-content-between mb-3"
+      id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <button type="button" 
               class="nav-link active" 
@@ -58,40 +61,60 @@
       </button>
     </li>
   </ul>
-  <!-- ピル部分 -->
+  <!-- ↑ピル部分 -->
 
-  <!-- パネル部分 -->
+  <!-- ↓パネル部分 -->
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <!-- ↓やりたいことタブ -->
+    <div class="tab-pane fade show active"
+         id="pills-home" 
+         role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
       <div class="bucket-list">
 
-        <!-- 投稿 -->
-      <%= render "list_items/list_items_form" %>
+        <!-- 投稿部分 -->
+        <% if current_user?(@user) %>
+          <%= render "list_items/list_items_form" %>
+        <% end %>
 
-      <!-- やりたいこと -->
-      <% if @user.list_items.any? %>
-        
-        <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
-                  row-cols-lg-4 g-2 mb-4">
-          <%= render partial: "list_items/list_item_show",
-                      collection: @list_items, as: :list_item %>
-        </ol>
+        <!-- やりたいこと -->
+        <% if @list_items_not_accomplished.any? %>
+          
+          <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                    row-cols-lg-4 g-2 mb-4">
+            <%= render partial: "list_items/list_item_not_accomplished",
+                        collection: @list_items_not_accomplished,
+                        as: :list_item %>
+          </ol>
 
-        <%= paginate @list_items, theme: 'bootstrap-5',
+        <%= paginate @list_items_not_accomplished, theme: 'bootstrap-5',
                                   pagination_class: "justify-content-center" %>
+        <% end %>
+      </div><!-- .bucket-list -->
+    </div>
+    <!-- ↑やりたいことタブ -->
+
+    <!-- ↓達成したことタブ -->
+    <div class="tab-pane fade"
+         id="pills-profile" role="tabpanel"
+         aria-labelledby="pills-profile-tab" tabindex="0">
+      <% if @list_items_accomplished.any? %>
+        <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                    row-cols-lg-4 g-2 mb-4">
+            <%= render partial: "list_items/list_item_accomplished",
+                        collection: @list_items_accomplished,
+                        as: :list_item %>
+          </ol>
+      <% else %>
       <% end %>
     </div>
-    </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-      <p>これは、<strong>プロフィールタブ</strong>に関連付けられたコンテンツのプレースホルダコンテンツ。...</p>
-    </div>
+    <!-- ↑達成したことタブ -->
+
+    <!-- ↓いいねしたことタブ -->
     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
       <p>これは、<strong>コンタクトタブ</strong>に関連付けられたコンテンツのプレースホルダコンテンツ。...</p>
     </div>
-    <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">
-      <p>これは、<strong>無効タブ</strong>の関連コンテンツの一部のプレースホルダーコンテンツ。</p>
-    </div>
-  </div>
-  <!-- パネル部分 -->
-  <!-- タブ ---------------------------------->
-</div>
+    <!-- ↑いいねしたことタブ -->
+  </div><!-- .tab-content -->
+  <!-- ↑パネル部分 -->
+  <!-- ↑タブ ---------------------------------->
+</div><!-- .users/show -->
