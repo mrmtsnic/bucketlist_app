@@ -38,7 +38,7 @@ class ListItemsController < ApplicationController
 
   def accomplish
     @list_item.update(accomplished: true)
-    flash[:info] = "#{@list_item.content} を達成しました!おめでとうございます!"
+    flash[:info] = "#{@list_item.content} を達成しました! おめでとうございます!"
     redirect_to @list_item.user
   end
 
