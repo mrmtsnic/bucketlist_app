@@ -16,9 +16,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @list_item =  @user.list_items.build
     @list_items_accomplished = @user.list_items.where(accomplished: true)
-                                    .page(params[:page])
+                                    .page(params[:accomplished_page])
     @list_items_not_accomplished = @user.list_items.where(accomplished: false)
-                                        .page(params[:page])
+                                        .page(params[:not_accomplished_page])
   end
 
   def create

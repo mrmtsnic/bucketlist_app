@@ -9,12 +9,7 @@ class ListItemsController < ApplicationController
       flash[:success] = "やりたいことを追加しました"
       redirect_to current_user
     else
-      @user = current_user
-      @list_items_accomplished = @user.list_items.where(accomplished: true)
-                                                  .page(params[:page])
-      @list_items_not_accomplished = @user.list_items.where(accomplished: false)
-                                          .page(params[:page])
-      render 'users/show', status: :unprocessable_entity
+      redirect_to current_user
     end
   end
 

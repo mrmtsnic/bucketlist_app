@@ -172,6 +172,16 @@ header {
     @include title;
   }
 
+  h2 {
+    font-size: 1.1rem;
+    color: white;
+    background-color: $green;
+    border-radius: 0.25rem;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+  }
+
   .list-group {
     flex-direction: row;
     text-align: center;

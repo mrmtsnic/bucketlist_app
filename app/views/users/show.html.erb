@@ -20,101 +20,58 @@
     </li>
   </ul>
 
-  <!-- ↓タブ ----------------------------------------->
-  <!-- ↓ピル部分 -->
-  <ul class="nav nav-pills justify-content-between mb-3"
-      id="pills-tab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button type="button" 
-              class="nav-link active" 
-              id="pills-home-tab" 
-              data-bs-toggle="pill" 
-              data-bs-target="#pills-home" 
-              role="tab" 
-              aria-controls="pills-home" 
-              aria-selected="true">
-        やりたいこと
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button type="button"
-              class="nav-link" 
-              id="pills-profile-tab" 
-              data-bs-toggle="pill" 
-              data-bs-target="#pills-profile" 
-              role="tab" 
-              aria-controls="pills-profile" 
-              aria-selected="false">
-        達成したこと
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button type="button" 
-              class="nav-link" 
-              id="pills-contact-tab" 
-              data-bs-toggle="pill" 
-              data-bs-target="#pills-contact" 
-              role="tab" 
-              aria-controls="pills-contact" 
-              aria-selected="false">
-        いいねしたこと
-      </button>
-    </li>
-  </ul>
-  <!-- ↑ピル部分 -->
+  <!-- やりたいことリスト -->
+  <h2 class="col-md-3 mb-3">やりたいこと</h2>
+  <div class="not-accomplished-list">
 
-  <!-- ↓パネル部分 -->
-  <div class="tab-content" id="pills-tabContent">
-    <!-- ↓やりたいことタブ -->
-    <div class="tab-pane fade show active"
-         id="pills-home" 
-         role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-      <div class="bucket-list">
+    <!-- 投稿部分 -->
+    <% if current_user?(@user) %>
+      <%= render "list_items/list_items_form" %>
+    <% end %>
 
-        <!-- 投稿部分 -->
-        <% if current_user?(@user) %>
-          <%= render "list_items/list_items_form" %>
-        <% end %>
+    <% if @list_items_not_accomplished.any? %>
+      
+      <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                row-cols-lg-4 g-2 mb-4">
+        <%= render partial: "list_items/list_item_not_accomplished",
+                    collection: @list_items_not_accomplished,
+                    as: :list_item %>
+      </ol>
 
-        <!-- やりたいこと -->
-        <% if @list_items_not_accomplished.any? %>
-          
-          <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
-                    row-cols-lg-4 g-2 mb-4">
-            <%= render partial: "list_items/list_item_not_accomplished",
-                        collection: @list_items_not_accomplished,
-                        as: :list_item %>
-          </ol>
+    <%= paginate @list_items_not_accomplished, theme: 'bootstrap-5',
+                              pagination_class: "justify-content-center",
+                              param_name: 'not_accomplished_page' %>
+    <% else %>
+      <p>やりたいことがまだありません</p>
+    <% end %>
+  </div>
+  <!-- やりたいことリスト -->
+  
+  <!-- 達成したことリスト -->
+  <h2 class="col-md-3 mb-3">達成したこと</h2>
+  <div class="accomplished-list">
+    <% if @list_items_accomplished.any? %>
+      <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                  row-cols-lg-4 g-2 mb-4">
+          <%= render partial: "list_items/list_item_accomplished",
+                      collection: @list_items_accomplished,
+                      as: :list_item %>
+        </ol>
 
-        <%= paginate @list_items_not_accomplished, theme: 'bootstrap-5',
-                                  pagination_class: "justify-content-center" %>
-        <% end %>
-      </div><!-- .bucket-list -->
-    </div>
-    <!-- ↑やりたいことタブ -->
+        <%= paginate @list_items_accomplished, theme: 'bootstrap-5',
+                                pagination_class: "justify-content-center",
+                                param_name: "accomplished_page" %>
+    <% else %>
+      <p>達成したことがまだありません。</p>
+    <% end %>
+  </div>
+  <!-- 達成したことリスト -->
 
-    <!-- ↓達成したことタブ -->
-    <div class="tab-pane fade"
-         id="pills-profile" role="tabpanel"
-         aria-labelledby="pills-profile-tab" tabindex="0">
-      <% if @list_items_accomplished.any? %>
-        <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
-                    row-cols-lg-4 g-2 mb-4">
-            <%= render partial: "list_items/list_item_accomplished",
-                        collection: @list_items_accomplished,
-                        as: :list_item %>
-          </ol>
-      <% else %>
-      <% end %>
-    </div>
-    <!-- ↑達成したことタブ -->
+  <!-- いいねしたことリスト -->
+  <h2 class="col-md-3 mb-3">いいねしたこと</h2>
+  <div class="liked-list mb-3">
+  <p>いいねしたことがまだありません。</p>
+  </div>
+  <!-- いいねしたことリスト -->
 
-    <!-- ↓いいねしたことタブ -->
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
-      <p>これは、<strong>コンタクトタブ</strong>に関連付けられたコンテンツのプレースホルダコンテンツ。...</p>
-    </div>
-    <!-- ↑いいねしたことタブ -->
-  </div><!-- .tab-content -->
-  <!-- ↑パネル部分 -->
-  <!-- ↑タブ ---------------------------------->
 </div><!-- .users/show -->
