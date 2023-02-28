@@ -48,4 +48,29 @@ class ListItemsInterfaceTest < ActionDispatch::IntegrationTest
     # やりたいことリストに含まれていないこと
     assert_not not_accomplished_list.include?(list_item)
   end
+
+  test "like unlike successfully" do
+    list_item = @user.list_items.first
+
+    assert_not @user.favorites.include?(list_item)
+    get user_path(@user)
+    assert_template 'users/show'
+    post list_item_likes_path list_item
+    assert @user.favorites.include?(list_item)
+    if request.referrer.nil?
+      assert_redirected_to root_url
+    else
+      assert_redirected_to user_path(@user)
+    end
+    follow_redirect!
+
+    delete list_item_like_path list_item,
+           @user.likes.find_by(list_item_id: list_item.id)
+    assert_not @user.favorites.include?(list_item)
+    if request.referrer.nil?
+      assert_redirected_to root_url
+    else
+      assert_redirected_to user_path(@user)
+    end
+  end
 end

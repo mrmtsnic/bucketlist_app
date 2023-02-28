@@ -456,6 +456,7 @@ footer {
 
 /* _list_item_not_accomplished
    _list_item_accomplished
+   _list_item_liked
 ------------------------*/
 .card {
   position: relative;
@@ -465,6 +466,13 @@ footer {
   }
 
   .card-body {
+    .user-icon {
+      display: inline-block;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
 
     .accomplish {
       @include accomplish-icon($gray);

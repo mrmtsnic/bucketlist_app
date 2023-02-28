@@ -70,7 +70,20 @@
   <!-- いいねしたことリスト -->
   <h2 class="col-md-3 mb-3">いいねしたこと</h2>
   <div class="liked-list mb-3">
-  <p>いいねしたことがまだありません。</p>
+    <% if @list_items_liked.any? %>
+      <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                  row-cols-lg-4 g-2 mb-4">
+          <%= render partial: "list_items/list_item_liked",
+                      collection: @list_items_liked,
+                      as: :list_item %>
+        </ol>
+
+        <%= paginate @list_items_liked, theme: 'bootstrap-5',
+                                pagination_class: "justify-content-center",
+                                param_name: "liked_page" %>
+    <% else %>
+      <p>いいねしたことがまだありません。</p>
+    <% end %>
   </div>
   <!-- いいねしたことリスト -->
 

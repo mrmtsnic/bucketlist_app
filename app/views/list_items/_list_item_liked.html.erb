@@ -1,0 +1,22 @@
+<li id="list-item-liked-<%= list_item.id %>" class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="user-icon">
+        <%= image_tag list_item.user.avatar_url %>
+      </div>
+
+      <span class="ml-2">
+        <%= link_to list_item.user.name, list_item.user,  class: "user-name"%>
+      </span>
+      <p class="card-text"><%= list_item.content %></p>
+      <p class="timestamp text-end"><%= list_item.process_created_at %></p>
+    </div><!-- .card-body -->
+
+    <div class="card-footer bg-transparent d-flex justify-content-between">
+      <div class="like">
+        <%= render 'list_items/like_btn', {list_item: list_item} %>
+        <%= list_item.likes.count %>
+      </div>
+    </div><!--- .card-footer -->
+  </div><!-- .card -->
+</li>

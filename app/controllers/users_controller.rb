@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :redirect_login_unless_logged_in,
-                only: [:index, :edit, :update, :destroy]
+                only: [:index, :show, :edit, :update, :destroy]
   before_action :redirect_home_unless_current_user,
                 only: [:edit, :update]
   before_action :redirect_home_unless_admin_user, only: [:destroy]
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
                                     .page(params[:accomplished_page])
     @list_items_not_accomplished = @user.list_items.where(accomplished: false)
                                         .page(params[:not_accomplished_page])
+    @list_items_liked = @user.favorites_except_mine.page(params[:liked_page])                      
   end
 
   def create

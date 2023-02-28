@@ -66,16 +66,21 @@ class User < ApplicationRecord
 
   # いいねする
   def like(list_item)
-    favorites << list_item
+    self.favorites << list_item
   end
 
   # いいねを取り消す
   def unlike(list_item)
-    favorites.destroy(list_item)
+    self.favorites.destroy(list_item)
   end
 
   def like?(list_item)
-    favorites.include?(list_item)
+    self.favorites.include?(list_item)
+  end
+
+  # いいねしたリストを返す(自分のリストは含まない)
+  def favorites_except_mine
+    self.favorites.where.not(user_id: self.id)
   end
 
   def activate
