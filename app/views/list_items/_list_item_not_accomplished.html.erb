@@ -6,7 +6,8 @@
         <%= link_to accomplish_list_item_path(list_item),
             data: {"turbo-method": :post} do %>
           <div class ="accomplish" data-bs-toggle="tooltip"
-            data-bs-placement="top" title="未達成" style="display: inline-block;">
+            data-bs-placement="top" title="未達成"
+            style="display: inline-block;">
             <i class="fa-solid fa-circle-check fa-2x"></i>
           </div>
         <% end %><!-- link_to -->
@@ -18,10 +19,8 @@
 
     <div class="card-footer bg-transparent d-flex justify-content-between">
       <div class="like">
-        <a href="#" class="like-btn">
-          <i class="fa-regular fa-thumbs-up fa-lg"></i>
-        </a>
-        <span>いいね数</span>
+        <%= render 'list_items/like_btn', { list_item: list_item } %>
+        <span><%= list_item.likes.count %></span>
       </div>
 
       <% if current_user?(list_item.user) %>

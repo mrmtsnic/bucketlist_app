@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :list_items, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :favorites, through: :likes, source: :list_item
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -60,6 +62,20 @@ class User < ApplicationRecord
     else
       "default.jpg"
     end
+  end
+
+  # いいねする
+  def like(list_item)
+    favorites << list_item
+  end
+
+  # いいねを取り消す
+  def unlike(list_item)
+    favorites.destroy(list_item)
+  end
+
+  def like?(list_item)
+    favorites.include?(list_item)
   end
 
   def activate

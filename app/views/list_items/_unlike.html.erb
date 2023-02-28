@@ -1,0 +1,6 @@
+<!-- いいね済み -->
+<%= link_to list_item_like_path(list_item_id: list_item.id,
+            id: current_user.likes.find_by(list_item_id: list_item.id)),
+            data: { "turbo-method": :delete } do%>
+  <i class="fa-solid fa-thumbs-up"></i>
+<% end %>

@@ -14,10 +14,8 @@
 
     <div class="card-footer bg-transparent d-flex justify-content-between">
       <div class="like">
-        <a href="#" class="like-btn">
-          <i class="fa-regular fa-thumbs-up fa-lg"></i>
-        </a>
-        <span>いいね数</span>
+        <%= render 'list_items/like_btn', {list_item: list_item} %>
+        <%= list_item.likes.count %>
       </div>
 
       <% if current_user?(list_item.user) %>

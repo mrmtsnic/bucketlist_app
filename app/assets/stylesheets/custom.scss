@@ -218,23 +218,24 @@ header {
     }
   }
 
-  .nav-item {
-    font-size: 1rem;
-    font-weight: bold;
-    width: 30%;
+  // tab用
+  // .nav-item {
+  //   font-size: 1rem;
+  //   font-weight: bold;
+  //   width: 30%;
     
-    .nav-link {
-      border: 3px solid $green;
-      width: 100%;
-      color: $green;
-    }
+  //   .nav-link {
+  //     border: 3px solid $green;
+  //     width: 100%;
+  //     color: $green;
+  //   }
     
-    .active { 
-      background-color: $green;
-      color: white;
-    }
+  //   .active { 
+  //     background-color: $green;
+  //     color: white;
+  //   }
 
-  }
+  // }
 
 }
 
