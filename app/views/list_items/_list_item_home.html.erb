@@ -22,5 +22,14 @@
       <p class="card-text"><%= list_item.content %></p>
       <p class="timestamp text-end"><%= list_item.process_created_at %></p>
     </div><!-- .card-body -->
+
+    <% if logged_in? %>
+      <div class="card-footer bg-transparent d-flex justify-content-between">
+        <div class="like">
+          <%= render 'list_items/like_btn', {list_item: list_item} %>
+          <%= list_item.likes.count %>
+        </div>
+      </div><!-- .card-footer -->
+    <% end %>
   </div><!-- .card -->
 </li>
