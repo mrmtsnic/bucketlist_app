@@ -1,4 +1,13 @@
 <div class="home">
-  <h1>What we want to do</h1>
-  <div class="board"></div>
+  <h1 class="mb-3">みんなのやりたいこと</h1>
+  <div class="board">
+      <% if @list_items_random.any? %>
+      <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
+                  row-cols-lg-4 g-2 mb-4">
+          <%= render partial: "list_items/list_item_home",
+                      collection: @list_items_random,
+                      as: :list_item %>
+      </ol>
+    <% end %>
+  </div>
 </div>

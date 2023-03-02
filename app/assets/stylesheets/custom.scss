@@ -3,10 +3,13 @@ $green-lighter: #33CC33;
 $gray: #E9ECEF;
 $black-green: #003333;
 @mixin title {
-  padding: 10px 10px 10px 0;
+  padding: 10px 10px 10px 10px;
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: bold;
+  background-color: $green;
+  color: white;
+  border-radius: 0.25rem;
 }
 
 @mixin btn {
@@ -60,6 +63,14 @@ $black-green: #003333;
   position: absolute;
   top: 5px;
   left: 5px;
+}
+
+@mixin add-icon {
+  color: #FF3399;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
 }
 
 .debug_dump {
@@ -144,8 +155,6 @@ header {
 
   .board {
     width:100%;
-    height:800px;
-    border: 1px solid black;
   }
 }
 
@@ -154,7 +163,6 @@ header {
 .users-new {
   h1 {
     @include title;
-    text-align: center;
   }
   
   form {
@@ -170,6 +178,8 @@ header {
   
   h1 {
     @include title;
+    background-color: white;
+    color: black;
   }
 
   h2 {
@@ -218,7 +228,7 @@ header {
     }
   }
 
-  // tab用
+  // bootstrapのtab用
   // .nav-item {
   //   font-size: 1rem;
   //   font-weight: bold;
@@ -288,7 +298,6 @@ header {
 .users-edit {
   h1 {
     @include title;
-    text-align: center;
   }
 
   form {
@@ -362,7 +371,6 @@ header {
 
   h1 {
     @include title;
-    text-align: center;
   }
 }
 
@@ -375,7 +383,6 @@ header {
   }
   h1 {
     @include title;
-    text-align: center;
   }
 
   p {
@@ -394,7 +401,6 @@ header {
 
   h1 {
     @include title;
-    text-align: center;
   }
 
   p {
@@ -449,7 +455,6 @@ footer {
 
   h1 {
     @include title;
-    text-align: center;
   }
 
 }
@@ -457,6 +462,7 @@ footer {
 /* _list_item_not_accomplished
    _list_item_accomplished
    _list_item_liked
+   _list_item_home
 ------------------------*/
 .card {
   position: relative;
@@ -480,6 +486,10 @@ footer {
 
     .not-accomplish {
       @include accomplish-icon($green-lighter);
+    }
+
+    .add-btn {
+      @include add-icon;
     }
 
     .card-text {

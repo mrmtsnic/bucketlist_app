@@ -107,6 +107,10 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  def mylist?(list_item)
+    self.list_items.include?(list_item)
+  end
+
   private
 
     def downcase_email

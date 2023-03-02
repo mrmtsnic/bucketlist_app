@@ -1,0 +1,26 @@
+<li id="list-item-home-<%= list_item.id %>" class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="user-icon">
+        <%= image_tag list_item.user.avatar_url %>
+      </div>
+
+      <span class="ml-2">
+        <%= link_to list_item.user.name, list_item.user,  class: "user-name"%>
+      </span>
+
+      <% if logged_in? %>
+        <% if !current_user.mylist?(list_item) %>
+          <%= link_to "/add/#{list_item.id}", data: {"turbo-method": :post} do %>
+          <span class="add-btn" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="自分のリストに加える">
+            <i class="fa-solid fa-circle-plus fa-2x"></i>
+          </span>
+          <% end %><!-- link_to -->
+        <% end %><!-- if !list_item.mylist? -->
+      <% end %><!-- if logged_in? -->
+      <p class="card-text"><%= list_item.content %></p>
+      <p class="timestamp text-end"><%= list_item.process_created_at %></p>
+    </div><!-- .card-body -->
+  </div><!-- .card -->
+</li>
