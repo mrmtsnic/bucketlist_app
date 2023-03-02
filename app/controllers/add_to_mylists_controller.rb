@@ -6,7 +6,7 @@ class AddToMylistsController < ApplicationController
     list_item = ListItem.find(params[:id])
     
     new_list = current_user.list_items.create!(content: list_item.content)
-    flash[:info] = "自分のリストに加えました"
+    flash[:info] = "「#{list_item.content}」を自分のリストに追加しました"
     redirect_to current_user
   end
 end
