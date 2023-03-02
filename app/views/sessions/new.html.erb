@@ -19,6 +19,11 @@
         <%= f.submit "ログイン", class: "btn form-control" %>
 
         <p>新規登録はお済みですか？ <%= link_to "Sign up", signup_path %></p>
+
+        <P class="mb-0">簡単にログインできます</p>
+        <%= link_to "ゲストユーザーでログイン", guest_login_path,
+            class: "guest mt-0 btn form-control",
+            data: { "turbo-method": :post } %>
       <% end %>
     </div>
   </div>

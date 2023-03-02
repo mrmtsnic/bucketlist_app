@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :redirect_home_unless_current_user,
                 only: [:edit, :update]
   before_action :redirect_home_unless_admin_user, only: [:destroy]
+  before_action :guest_user_cant_edit_profile, only: [:update]
   def new
     @user = User.new
   end
@@ -71,5 +72,17 @@ class UsersController < ApplicationController
     
     def redirect_home_unless_admin_user
       redirect_to root_url, status: :see_other unless current_user.admin?
+    end
+
+    def guest?
+      guest_email = "guest@example.com"
+      current_user.email ==  guest_email
+    end
+
+    def guest_user_cant_edit_profile
+      if guest?
+        flash[:danger] = "ゲストユーザーはプロフィールを編集できません"
+        redirect_to root_url
+      end
     end
 end

@@ -1,6 +1,13 @@
 <div class="home">
   <h1 class="mb-3">みんなのやりたいこと</h1>
-  <div class="board">
+
+  <% if !logged_in? %>
+    <P class="mb-0">簡単にログインできます</p>
+          <%= link_to "ゲストユーザーでログインする", guest_login_path,
+              class: "guest mt-0 mb-3 btn form-control",
+              data: { "turbo-method": :post } %>
+    <div class="board">
+  <% end %>
       <% if @list_items_random.any? %>
       <ol class="list-items row row-cols-1 row-cols-sm-2 row-cols-md-3
                   row-cols-lg-4 g-2 mb-4">

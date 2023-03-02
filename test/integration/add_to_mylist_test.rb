@@ -2,7 +2,6 @@ require "test_helper"
 
 class AddToMylistTest < ActionDispatch::IntegrationTest
 
-  # login
   def setup
     @user = users(:test)
     @not_my_list_item = list_items(:test2)
