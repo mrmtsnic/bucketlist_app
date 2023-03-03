@@ -1,24 +1,30 @@
-# README
+# Bucketlist Appについて
+## サイトURL
+https://bucketlist-app.onrender.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## コンセプト
+やりたいことリストを共有できるアプリ
 
-Things you may want to cover:
+## 作成しようと思った理由
+rails tutorialを終えた後に何か作ってみようと思い<br>
+他の人のやりたいことリストが見れたら面白いだろうなと思い作成した。<br>
 
-* Ruby version
 
-* System dependencies
+## 使用技術
+* Ruby:3.1
+* Ruby on Rails:7.0.4.2
+* MySQL(開発環境),PostgreSQL(本番環境)
+* Git
+* Render.com
+* Docker/Docker-compose
+* minitest
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 実装した機能
+* ユーザー登録機能
+* ログイン/ログアウト機能
+* アカウント認証機能
+* パスワード再設定機能
+* リスト作成、編集、削除機能
+* 他のユーザーのリストを追加する機能
+* いいね機能
+* ページネーション
